@@ -71,15 +71,15 @@ def sew_two_circuits(V1,V2):
 
         #going backwards, order should not metter as we
         V2(reg1[1]).adjoint()
-        qml.SWAP(reg1[1],reg2[1])
+        qml.SWAP([reg1[1],reg2[1]])
         V2(reg1[1])
 
         V1(reg1[0]).adjoint()
-        qml.SWAP(reg1[0], reg2[0])
+        qml.SWAP([reg1[0], reg2[0]])
         V1(reg1[0])
 
-        qml.SWAP(reg1[1],reg2[1])
-        qml.SWAP(reg1[0], reg2[0])
+        qml.SWAP([reg1[1],reg2[1]])
+        qml.SWAP([reg1[0], reg2[0]])
         return qml.probs(reg1)
     drawer = qml.draw_mpl(sewed_circuit, show_all_wires = True)
     return sewed_circuit(), drawer
