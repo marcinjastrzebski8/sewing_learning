@@ -60,7 +60,7 @@ def sew_two_circuits(V1,V2):
     SUPER HARDCODED FOR NOW
     V1, V2 - functions returning a list of qml operations with one argument - qubit to act on
     """
-    qubits = np.range(4)
+    qubits = np.arange(4)
     device = qml.device('default.qubit', wires=qubits)
     
     #divide the two register blocks for clarity
