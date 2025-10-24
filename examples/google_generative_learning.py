@@ -5,6 +5,7 @@ TODO: starting hardcoded, expand general
 """
 
 import pennylane as qml
+import matplotlib.pyplot as plt
 from src.circuit_utils import circuit2d, sew_two_circuits
 
 
@@ -14,11 +15,12 @@ def target_circuit():
     """
     device = []
     @qml.qnode(device)
-    def target_circuit():
+    def circuit():
         qml.H(0)
         qml.CNOT([0,1])
         return qml.probs()
-    return target_circuit()
+    drawer = qml.drawer(circuit, show_all_wires = True, output = 'mpl')
+    return circuit(), drawer
 
 def target_local_inverse():
     """
@@ -47,7 +49,8 @@ def target_local_inverse():
 if __name__ == '__main__':
 
     #define shallow circuit
-    probs_target = target_circuit()
+    probs_target, target_diagram = target_circuit()
+    target_diagram().savefig("target_diagram", dpi = 300)
 
     #baseline train the circuit - results in model
 
@@ -57,7 +60,7 @@ if __name__ == '__main__':
     v1, v2 = target_local_inverse()
 
     #sewing - results in model
-    probs_sewed = sew_two_circuits(v1, v2)
-
+    probs_sewed, sewed_diagram = sew_two_circuits(v1, v2)
+    sewed_diagram().savefig("sewed_diagram", dpi=300)
     #compare two trained models
 

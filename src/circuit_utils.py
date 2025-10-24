@@ -66,7 +66,7 @@ def sew_two_circuits(V1,V2):
     reg1 = qubits[:2]
     reg2 = qubits[2:]
     @qml.qnode(device)
-    def sewed_circuit(V1,V2):
+    def sewed_circuit():
 
         #going backwards, order should not metter as we
         V2(reg1[1]).adjoint()
@@ -80,7 +80,8 @@ def sew_two_circuits(V1,V2):
         qml.SWAP(reg1[1],reg2[1])
         qml.SWAP(reg1[0], reg2[0])
         return qml.probs(reg1)
-    return sew_two_circuits
+    drawer = qml.drawer(sewed_circuit, show_all_wires = True, output = 'mpl')
+    return sewed_circuit(), drawer
 
 
 
