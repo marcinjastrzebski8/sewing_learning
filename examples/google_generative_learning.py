@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     #define shallow circuit
     probs_target, target_diagram = target_circuit()
-    target_diagram().savefig("target_diagram", dpi = 300)
+    target_diagram()[0].savefig("target_diagram", dpi = 300)
 
     #baseline train the circuit - results in model
 
@@ -61,6 +61,6 @@ if __name__ == '__main__':
 
     #sewing - results in model
     probs_sewed, sewed_diagram = sew_two_circuits(v1, v2)
-    sewed_diagram().savefig("sewed_diagram", dpi=300)
+    sewed_diagram()[0].savefig("sewed_diagram", dpi=300)
     #compare two trained models
 
