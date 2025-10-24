@@ -81,7 +81,7 @@ def sew_two_circuits(V1,V2):
         qml.SWAP(reg1[1],reg2[1])
         qml.SWAP(reg1[0], reg2[0])
         return qml.probs(reg1)
-    drawer = qml.drawer(sewed_circuit, show_all_wires = True, output = 'mpl')
+    drawer = qml.draw_mpl(sewed_circuit, show_all_wires = True)
     return sewed_circuit(), drawer
 
 

@@ -19,7 +19,7 @@ def target_circuit():
         qml.H(0)
         qml.CNOT([0,1])
         return qml.probs()
-    drawer = qml.draw(circuit, show_all_wires = True, output = 'mpl')
+    drawer = qml.draw_mpl(circuit, show_all_wires = True)
     return circuit(), drawer
 
 def target_local_inverse():
