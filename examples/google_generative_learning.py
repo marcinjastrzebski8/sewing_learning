@@ -16,7 +16,7 @@ def target_circuit():
     device = qml.device('default.qubit', wires=range(2))
     @qml.qnode(device)
     def circuit():
-        qml.H(0)
+        qml.Hadamard(0)
         qml.CNOT([0,1])
         return qml.probs()
     drawer = qml.draw_mpl(circuit, show_all_wires = True)
