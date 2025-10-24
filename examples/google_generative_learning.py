@@ -13,7 +13,7 @@ def target_circuit():
     """
     For now simple entangler
     """
-    device = []
+    device = qml.device('default.qubit', wires=range(2))
     @qml.qnode(device)
     def circuit():
         qml.H(0)
