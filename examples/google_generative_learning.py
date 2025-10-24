@@ -27,21 +27,9 @@ def target_local_inverse():
     For now just random one-qubit circuits.
     DOES NOT REPRODUCE TARGET ATM.
     """
-    def v1(qubit):
-        """
-        first circuit as oplist
-        """
-        op_list = []
-        op_list.append(qml.X(wires = qubit))
-        return op_list
+    v1 = qml.X
 
-    def v2(qubit):
-        """
-        first circuit as oplist
-        """
-        op_list = []
-        op_list.append(qml.Y(wires = qubit))
-        return op_list
+    v2 = qml.Y
     return v1, v2
 
 
