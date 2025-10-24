@@ -69,12 +69,12 @@ def sew_two_circuits(V1,V2):
     @qml.qnode(device)
     def sewed_circuit():
 
-        #going backwards, order should not metter as we
-        V2(reg1[1]).adjoint()
+        #order of implementation of locals should not matter
+        V2(reg1[1])
         qml.SWAP([reg1[1],reg2[1]])
         V2(reg1[1])
 
-        V1(reg1[0]).adjoint()
+        V1(reg1[0])
         qml.SWAP([reg1[0], reg2[0]])
         V1(reg1[0])
 
