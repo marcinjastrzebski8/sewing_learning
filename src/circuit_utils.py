@@ -70,11 +70,11 @@ def sew_two_circuits(V1,V2):
     def sewed_circuit():
 
         #order of implementation of locals should not matter
-        V2(reg1[1])
+        V2(reg1[1]) #this should be an adjoint
         qml.SWAP([reg1[1],reg2[1]])
         V2(reg1[1])
 
-        V1(reg1[0])
+        V1(reg1[0]) #thi should be an adjoint
         qml.SWAP([reg1[0], reg2[0]])
         V1(reg1[0])
 

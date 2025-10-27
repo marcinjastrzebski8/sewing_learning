@@ -11,13 +11,20 @@ from src.circuit_utils import circuit2d, sew_two_circuits
 
 def target_circuit():
     """
-    For now simple entangler
+    For now simple entangler - this obviously should not work very well.
     """
     device = qml.device('default.qubit', wires=range(2))
     @qml.qnode(device)
     def circuit():
-        qml.Hadamard(0)
-        qml.CNOT([0,1])
+        #first layer
+        for width_i in range(6,2):
+            qml.Hadamard(width_i)
+            qml.CNOT([width_i,width_i+1])
+        #second layer
+        for width_i in range(6,2):
+            qml.Hadamard(width_i+1)
+            qml.CNOT([width_i+1,width_i+2])
+        
         return qml.probs()
     drawer = qml.draw_mpl(circuit, show_all_wires = True)
     return circuit(), drawer
@@ -45,10 +52,10 @@ if __name__ == '__main__':
     #divide circuit
 
     #train each piece
-    v1, v2 = target_local_inverse()
+    #v1, v2 = target_local_inverse()
 
     #sewing - results in model
-    probs_sewed, sewed_diagram = sew_two_circuits(v1, v2)
-    sewed_diagram()[0].savefig("sewed_diagram", dpi=300)
+    #probs_sewed, sewed_diagram = sew_two_circuits(v1, v2)
+    #sewed_diagram()[0].savefig("sewed_diagram", dpi=300)
     #compare two trained models
 
