@@ -13,15 +13,15 @@ def target_circuit():
     """
     For now simple entangler - this obviously should not work very well.
     """
-    device = qml.device('default.qubit', wires=range(2))
+    device = qml.device('default.qubit', wires=range(12))
     @qml.qnode(device)
     def circuit():
         #first layer
-        for width_i in range(6,2):
+        for width_i in range(0,6,2):
             qml.Hadamard(width_i)
             qml.CNOT([width_i,width_i+1])
         #second layer
-        for width_i in range(6,2):
+        for width_i in range(0,6,2):
             qml.Hadamard(width_i+1)
             qml.CNOT([width_i+1,width_i+2])
         
