@@ -21,7 +21,7 @@ def target_circuit():
             qml.Hadamard(width_i)
             qml.CNOT([width_i,width_i+1])
         #second layer
-        for width_i in range(1,13,2):
+        for width_i in range(1,10,2):
             qml.CNOT([width_i,width_i+1])
         
         return qml.probs()
