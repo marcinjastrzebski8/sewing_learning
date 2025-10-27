@@ -21,8 +21,8 @@ def target_circuit():
             qml.Hadamard(width_i)
             qml.CNOT([width_i,width_i+1])
         #second layer
-        for width_i in range(0,12,2):
-            qml.CNOT([width_i+1,width_i+2])
+        for width_i in range(1,13,2):
+            qml.CNOT([width_i,width_i])
         
         return qml.probs()
     drawer = qml.draw_mpl(circuit, show_all_wires = True)
